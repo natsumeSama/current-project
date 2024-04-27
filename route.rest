@@ -1,0 +1,20 @@
+### Sign up (Inscription)
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "username": "utilisateur123",
+    "email": "utilisateur123@example.com",
+    "password": "motdepasse123"
+}
+
+###
+
+### Login (Connexion)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "yudas@outlook.com",
+    "password": "motdepasse123"
+}
