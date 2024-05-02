@@ -1,3 +1,4 @@
+
 ### Sign up (Inscription)
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
@@ -18,3 +19,23 @@ Content-Type: application/json
     "email": "yudas@outlook.com",
     "password": "motdepasse123"
 }
+
+###
+
+
+# Récupérer la liste des restaurants
+GET http://localhost:3000/restaurants
+Authorization: Bearer VOTRE_JETON_D'ACCES
+
+###
+POST http://localhost:3000/restaurants/add-multiple
+
+
+
+###
+POST http://localhost:3000/hotels/add-multiple
+
+###
+POST http://localhost:3000/activities/add-multiple
+
+
