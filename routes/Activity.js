@@ -5,9 +5,20 @@ const router = express.Router();
 const Activity = require('../models/Activity'); // Assurez-vous que le nom du modèle correspond exactement au nom du fichier
 
 // Route pour obtenir la liste de toutes les activités
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     try {
         const activities = await Activity.find();
+        res.json(activities);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});*/
+
+router.get('/:v', async (req, res) => {
+    const v = req.params.v; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const activities = await Activity.find({ v: v }); // Pas de projection, tous les champs seront retournés
         res.json(activities);
     } catch (err) {
         res.status(500).json({ message: err.message });

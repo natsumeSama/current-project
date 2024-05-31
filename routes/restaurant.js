@@ -14,6 +14,17 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:v', async (req, res) => {
+    const v = req.params.v; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const restaurants = await Restaurant.find({ v: v }); // Pas de projection, tous les champs seront retournés
+        res.json(restaurants);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Route pour créer un nouveau restaurant
 router.post('/', async (req, res) => {
     const restaurant = new Restaurant({

@@ -14,6 +14,17 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:v', async (req, res) => {
+    const v = req.params.v; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const hotels = await Hotel.find({ v: v }); // Pas de projection, tous les champs seront retournés
+        res.json(hotels);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Route pour créer un nouvel hôtel
 router.post('/', async (req, res) => {
     const hotel = new Hotel({

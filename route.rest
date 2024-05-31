@@ -24,7 +24,7 @@ Content-Type: application/json
 
 
 # Récupérer la liste des restaurants
-GET http://localhost:3000/restaurants
+GET http://localhost:3000/restaurants/16
 Authorization: Bearer VOTRE_JETON_D'ACCES
 
 ###
