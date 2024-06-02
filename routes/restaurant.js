@@ -25,6 +25,33 @@ router.get('/:v', async (req, res) => {
     }
 });
 
+router.get('/search/:name', async (req, res) => {
+    const name = req.params.name; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const restaurants = await Restaurant.find({ name: name }); // Pas de projection, tous les champs seront retournés
+        res.json(restaurants);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get('/fav/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const restaurant = await Restaurant.findById(id);
+        if (!restaurant) {
+            return res.status(404).json({ message: 'Restaurant non trouvé' });
+        }
+        res.json(restaurant);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 // Route pour créer un nouveau restaurant
 router.post('/', async (req, res) => {
     const restaurant = new Restaurant({

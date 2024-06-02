@@ -4,9 +4,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "username": "utilisateur123",
-    "email": "utilisateur123@example.com",
-    "password": "motdepasse123"
+    "username": "Guest",
+    "email": "Guest@guest.com",
+    "password": "Guest"
 }
 
 ###
@@ -24,11 +24,11 @@ Content-Type: application/json
 
 
 # Récupérer la liste des restaurants
-GET http://localhost:3000/restaurants/16
+POST    http://localhost:3000/auth/aissaniyudas@gmail.com/6
 Authorization: Bearer VOTRE_JETON_D'ACCES
 
 ###
-POST http://localhost:3000/restaurants/add-multiple
+GET  http://localhost:3000/restaurants/fav/6633dc325a7933d32a72593b
 
 
 

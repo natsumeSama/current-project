@@ -5,14 +5,6 @@ const router = express.Router();
 const Hotel = require('../models/Hotel'); // Le nom du modèle doit correspondre exactement au nom du fichier
 
 // Route pour obtenir la liste de tous les hôtels
-router.get('/', async (req, res) => {
-    try {
-        const hotels = await Hotel.find();
-        res.json(hotels);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
 
 router.get('/:v', async (req, res) => {
     const v = req.params.v; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
@@ -20,6 +12,31 @@ router.get('/:v', async (req, res) => {
     try {
         const hotels = await Hotel.find({ v: v }); // Pas de projection, tous les champs seront retournés
         res.json(hotels);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get('/search/:name', async (req, res) => {
+    const name = req.params.name; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const hotels = await Hotel.find({ name: name }); // Pas de projection, tous les champs seront retournés
+        res.json(hotels);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get('/fav/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const hotel = await Hotel.findById(id);
+        if (!hotel) {
+            return res.status(404).json({ message: 'Hotel non trouvé' });
+        }
+        res.json(hotel);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

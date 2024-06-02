@@ -25,6 +25,33 @@ router.get('/:v', async (req, res) => {
     }
 });
 
+router.get('/search/:name', async (req, res) => {
+    const name = req.params.name; // Obtenez la valeur de 'v' depuis les paramètres de l'URL
+
+    try {
+        const activities = await Activity.find({ name: name }); // Pas de projection, tous les champs seront retournés
+        res.json(activities);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.get('/fav/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const activity = await Activity.findById(id);
+        if (!activity) {
+            return res.status(404).json({ message: 'Activity non trouvé' });
+        }
+        res.json(activity);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 // Route pour créer une nouvelle activité
 router.post('/', async (req, res) => {
     const activity = new Activity({
